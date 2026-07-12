@@ -1,0 +1,83 @@
+.job-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.job-card:hover{
+    transform:translateY(-8px);
+}
+
+.job-card h2{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.job-card p{
+    margin:10px 0;
+}
+
+.job-card button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.job-card button:hover{
+    background:#1d4ed8;
+}
+
+.category-badge {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 6px 12px;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.company-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.job-card p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.job-card p svg {
+  color: #2563eb;
+  font-size: 16px;
+}
+
+.favorite-icon {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.favorite-icon svg {
+  color: #e63946;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.favorite-icon svg:hover {
+  transform: scale(1.2);
+}
