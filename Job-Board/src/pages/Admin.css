@@ -2,177 +2,372 @@
   max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
+
+  color: var(--text-color);
 }
 
 .admin-title {
-  font-size: 36px;
-  font-weight: bold;
   margin-bottom: 10px;
+
+  color: var(--text-color);
+  font-size: 36px;
+  font-weight: 700;
 }
 
 .admin-subtitle {
-  color: #666;
   margin-bottom: 30px;
+
+  color: var(--text-secondary);
 }
 
-/* Dashboard Cards */
+/* =========================
+   Dashboard Cards
+========================= */
 
 .dashboard-cards {
   display: flex;
-  gap: 20px;
-  margin-bottom: 35px;
   flex-wrap: wrap;
+  gap: 20px;
+
+  margin-bottom: 35px;
 }
 
 .dashboard-card {
   flex: 1;
   min-width: 220px;
-  background: white;
+
   padding: 25px;
+
+  background: var(--card-color);
+  color: var(--text-color);
+
+  border: 1px solid var(--border);
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow);
+
   text-align: center;
-  transition: .3s;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.dashboard-card:hover{
+.dashboard-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
 }
 
-.dashboard-card h2{
-  color:#2563eb;
-  margin-bottom:10px;
+.dashboard-card h2 {
+  margin-bottom: 10px;
+
+  color: var(--primary);
 }
 
-.dashboard-card p{
-  font-size:28px;
-  font-weight:bold;
+.dashboard-card p {
+  margin: 0;
+
+  color: var(--text-color);
+  font-size: 28px;
+  font-weight: 700;
 }
 
-/* Form */
-
-.job-form{
-  background:white;
-  padding:30px;
-  border-radius:15px;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
-  margin-bottom:40px;
-}
-
-.job-form h2{
-  margin-bottom:20px;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-
-.form-grid input,
-.form-grid select,
-.form-grid textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  font-size:15px;
-}
-
-.form-grid textarea{
-  grid-column:1/3;
-  resize:none;
-  height:120px;
-}
-
-.file-upload{
-  grid-column:1/3;
-}
-
-.add-btn{
-  grid-column:1/3;
-  padding:14px;
-  background:#2563eb;
-  color:white;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:17px;
-  transition:.3s;
-}
-
-.add-btn:hover{
-  background:#1d4ed8;
-}
-
-/* Table */
-
-.job-table{
-  width:100%;
-  border-collapse:collapse;
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-.job-table th{
-  background:#2563eb;
-  color:white;
-  padding:14px;
-}
-
-.job-table td{
-  padding:14px;
-  border-bottom:1px solid #eee;
-}
-
-.job-table tr:hover{
-  background:#f7f9ff;
-}
-
-/* Responsive */
-
-@media(max-width:768px){
-
-.form-grid{
-grid-template-columns:1fr;
-}
-
-.form-grid textarea,
-.file-upload,
-.add-btn{
-grid-column:1;
-}
-
-.dashboard-cards{
-flex-direction:column;
-}
-
-}
+/* =========================
+   Charts
+========================= */
 
 .charts-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 25px;
+
   margin: 40px 0;
 }
 
 .chart-card {
-  background: #fff;
   padding: 25px;
+
+  background: var(--card-color);
+  color: var(--text-color);
+
+  border: 1px solid var(--border);
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  box-shadow: var(--shadow);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .chart-card h2 {
-  text-align: center;
   margin-bottom: 20px;
-  color: #1f2937;
+
+  color: var(--text-color);
+  text-align: center;
 }
 
+/* Recharts dark-mode support */
+
+body.dark .recharts-cartesian-grid line {
+  stroke: #334155;
+}
+
+body.dark .recharts-text,
+body.dark .recharts-legend-item-text {
+  fill: #cbd5e1;
+  color: #cbd5e1 !important;
+}
+
+body.dark .recharts-default-tooltip {
+  background: #1e293b !important;
+  border: 1px solid #475569 !important;
+  color: #f8fafc !important;
+}
+
+body.dark .recharts-tooltip-label,
+body.dark .recharts-tooltip-item {
+  color: #f8fafc !important;
+}
+
+/* =========================
+   Add/Edit Job Form
+========================= */
+
+.job-form {
+  margin-bottom: 40px;
+  padding: 30px;
+
+  background: var(--card-color);
+  color: var(--text-color);
+
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.job-form h2 {
+  margin-bottom: 20px;
+
+  color: var(--text-color);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  padding: 12px;
+
+  background: var(--bg-color);
+  color: var(--text-color);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+
+  font-size: 15px;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.form-grid input::placeholder,
+.form-grid textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.form-grid select option {
+  background: var(--card-color);
+  color: var(--text-color);
+}
+
+.form-grid textarea {
+  grid-column: 1 / 3;
+
+  height: 120px;
+  resize: none;
+}
+
+.file-upload {
+  grid-column: 1 / 3;
+
+  color: var(--text-color);
+}
+
+.file-upload label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.add-btn {
+  grid-column: 1 / 3;
+
+  padding: 14px;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.add-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   Search Area
+========================= */
+
+.admin-container > div[style*="justify-content: space-between"] {
+  color: var(--text-color);
+}
+
+.admin-container > div[style*="justify-content: space-between"] input {
+  background: var(--card-color);
+  color: var(--text-color);
+
+  border-color: var(--border) !important;
+}
+
+.admin-container > div[style*="justify-content: space-between"] input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* =========================
+   Jobs Table
+========================= */
+
+.job-table {
+  width: 100%;
+
+  overflow: hidden;
+
+  background: var(--card-color);
+  color: var(--text-color);
+
+  border: 1px solid var(--border);
+  border-collapse: collapse;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.job-table th {
+  padding: 14px;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  text-align: left;
+}
+
+.job-table td {
+  padding: 14px;
+
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border);
+}
+
+.job-table tbody tr {
+  background: var(--card-color);
+
+  transition: background 0.3s ease;
+}
+
+.job-table tbody tr:hover {
+  background: var(--bg-color);
+}
+
+.job-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================
+   Dark Mode Fine-Tuning
+========================= */
+
+body.dark .dashboard-card,
+body.dark .chart-card,
+body.dark .job-form,
+body.dark .job-table {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .form-grid input,
+body.dark .form-grid select,
+body.dark .form-grid textarea {
+  background: #0f172a;
+}
+
+body.dark .job-table tbody tr:hover {
+  background: #0f172a;
+}
+
+/* =========================
+   Responsive
+========================= */
+
 @media (max-width: 768px) {
+  .admin-container {
+    padding: 15px;
+  }
+
+  .admin-title {
+    font-size: 30px;
+  }
+
+  .dashboard-cards {
+    flex-direction: column;
+  }
+
   .charts-container {
     grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid textarea,
+  .file-upload,
+  .add-btn {
+    grid-column: 1;
+  }
+
+  .job-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }

@@ -1,33 +1,57 @@
-* {
-  box-sizing: border-box;
-}
-
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
 
+  width: 100%;
+  padding: 16px 40px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 28px;
 
-  padding: 18px 60px;
+  background: var(--card-color);
+  box-shadow: var(--shadow);
 
-  background: #ffffff;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Desktop structure */
+
+.navbar-top {
+  display: contents;
+}
+
+.navbar-content {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+
+  min-width: 0;
 }
 
 /* Logo */
+
+.logo {
+  flex-shrink: 0;
+}
 
 .logo a {
   display: flex;
   align-items: center;
   gap: 10px;
 
+  color: var(--primary);
   text-decoration: none;
-  color: #2563eb;
-  font-size: 28px;
+
+  font-size: 20px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .logo-icon {
@@ -38,89 +62,328 @@
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 24px;
+
+  margin: 0;
+  padding: 0;
+
   list-style: none;
 }
 
 .nav-links a {
+  position: relative;
+
+  color: var(--text-color);
   text-decoration: none;
-  color: #333;
+
+  font-size: 16px;
   font-weight: 600;
-  transition: .3s;
+
+  white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
-  color: #2563eb;
-}
-
+.nav-links a:hover,
 .nav-links a.active {
-  color: #2563eb;
-  border-bottom: 2px solid #2563eb;
-  padding-bottom: 5px;
+  color: var(--primary);
+}
+
+.nav-links a.active::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+
+  height: 3px;
+  border-radius: 999px;
+
+  background: var(--primary);
 }
 
 /* Search */
 
 .navbar-search {
+  flex: 1;
+  min-width: 170px;
+  max-width: 280px;
+
   display: flex;
   align-items: center;
   gap: 10px;
 
-  background: #f3f4f6;
+  padding: 10px 16px;
 
-  padding: 10px 15px;
-
+  background: var(--bg-color);
+  border: 1px solid var(--border);
   border-radius: 30px;
+}
 
-  width: 250px;
+.navbar-search svg {
+  flex-shrink: 0;
+  color: var(--text-secondary);
 }
 
 .navbar-search input {
+  width: 100%;
+  min-width: 0;
+
   border: none;
   outline: none;
+
   background: transparent;
-  width: 100%;
+  color: var(--text-color);
+
+  font-size: 14px;
 }
 
-/* Buttons */
+.navbar-search input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Theme and menu buttons */
+
+.theme-toggle,
+.menu-toggle {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--bg-color);
+  color: var(--primary);
+
+  font-size: 18px;
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.theme-toggle:hover,
+.menu-toggle:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+/* Login/Register */
 
 .buttons {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 12px;
+
+  flex-shrink: 0;
 }
 
 .login,
 .register {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 
+  padding: 11px 18px;
+  border-radius: 10px;
+
   text-decoration: none;
-
-  padding: 10px 18px;
-
-  border-radius: 8px;
-
   font-weight: 600;
+  white-space: nowrap;
 
-  transition: .3s;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .login {
-  background: #2563eb;
-  color: white;
+  background: var(--primary);
+  color: #ffffff;
 }
 
 .login:hover {
-  background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
 .register {
-  border: 2px solid #2563eb;
-  color: #2563eb;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
 }
 
 .register:hover {
-  background: #2563eb;
-  color: white;
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.mobile-actions,
+.menu-toggle,
+.mobile-theme-toggle {
+  display: none;
+}
+
+/* Smaller laptops */
+
+@media (max-width: 1280px) {
+  .navbar {
+    padding: 15px 22px;
+    gap: 18px;
+  }
+
+  .navbar-content {
+    gap: 14px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .navbar-search {
+    min-width: 150px;
+    max-width: 210px;
+  }
+
+  .login,
+  .register {
+    padding: 10px 13px;
+  }
+}
+
+/* Hamburger menu */
+
+@media (max-width: 1050px) {
+  .navbar {
+    display: block;
+    padding: 14px 22px;
+  }
+
+  .navbar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu-toggle,
+  .mobile-theme-toggle {
+    display: flex;
+  }
+
+  .desktop-theme-toggle {
+    display: none;
+  }
+
+  .navbar-content {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+
+    width: 100%;
+    margin-top: 16px;
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border);
+  }
+
+  .navbar-content.open {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .nav-links li,
+  .nav-links a {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 12px 10px;
+    border-radius: 8px;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: var(--bg-color);
+  }
+
+  .nav-links a.active::after {
+    display: none;
+  }
+
+  .navbar-search {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .login,
+  .register {
+    flex: 1;
+  }
+}
+
+/* Phones */
+
+@media (max-width: 560px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .logo a {
+    font-size: 18px;
+  }
+
+  .logo-icon {
+    font-size: 24px;
+  }
+
+  .theme-toggle,
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .login,
+  .register {
+    width: 100%;
+  }
 }

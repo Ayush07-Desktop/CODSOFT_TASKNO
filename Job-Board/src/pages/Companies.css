@@ -2,68 +2,120 @@
   max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
+
+  color: var(--text-color);
 }
 
 .companies-page h1 {
-  text-align: center;
-  font-size: 42px;
-  color: #1f2937;
   margin-bottom: 40px;
+
+  color: var(--text-color);
+  font-size: 42px;
+  text-align: center;
 }
 
 .companies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  );
   gap: 30px;
 }
 
 .company-card {
-  background: white;
   padding: 30px;
+
+  background: var(--card-color);
+  color: var(--text-color);
+
+  border: 1px solid var(--border);
   border-radius: 15px;
+  box-shadow: var(--shadow);
+
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
-  transition: .3s;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .company-card:hover {
   transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
 }
 
 .company-logo {
   width: 90px;
   height: 90px;
   object-fit: contain;
+
   margin-bottom: 20px;
+  padding: 8px;
+
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
 .company-card h2 {
-  color: #2563eb;
   margin-bottom: 10px;
+
+  color: var(--primary);
 }
 
 .company-card p {
-  color: #6b7280;
   margin-bottom: 20px;
+
+  color: var(--text-secondary);
+}
+
+.company-card a {
+  text-decoration: none;
 }
 
 .company-card button {
   width: 100%;
   padding: 12px;
-  background: #2563eb;
-  color: white;
+
+  background: var(--primary);
+  color: #ffffff;
+
   border: none;
   border-radius: 10px;
+
   cursor: pointer;
   font-size: 16px;
-  transition: .3s;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .company-card button:hover {
   background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
-@media (max-width:768px) {
+/* Dark-mode fine tuning */
+
+body.dark .company-card {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .company-logo {
+  background: #f8fafc;
+  border-color: #475569;
+}
+
+@media (max-width: 768px) {
+  .companies-page {
+    padding: 15px;
+  }
+
   .companies-page h1 {
     font-size: 32px;
   }
