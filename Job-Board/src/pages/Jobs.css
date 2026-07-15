@@ -1,38 +1,132 @@
-.search-box{
-    width:100%;
-    max-width:500px;
-    display:block;
-    margin:20px auto 40px;
-    padding:14px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
-.jobs-page{
-    padding:70px;
-    background:#f5f7fb;
-    min-height:100vh;
+.jobs-page {
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
-.jobs-page h1{
-    text-align:center;
-    margin-bottom:50px;
-    color:#2563eb;
+.jobs-page h1 {
+  text-align: center;
+  font-size: 42px;
+  color: #1f2937;
+  margin-bottom: 35px;
 }
 
-.job-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
+/* ===========================
+   Filter Section
+=========================== */
+
+.filter-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
+.search-box,
 .job-type-filter {
-  display: block;
-  width: 250px;
-  margin: 0 auto 30px;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-box:focus,
+.job-type-filter:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+}
+
+.clear-btn {
+  padding: 14px 20px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.clear-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Job Count
+=========================== */
+
+.job-count {
+  margin-bottom: 25px;
+  color: #4b5563;
+  font-size: 16px;
+}
+
+/* ===========================
+   Job Grid
+=========================== */
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 25px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 992px) {
+  .filter-container {
+    grid-template-columns: 1fr;
+  }
+
+  .clear-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .jobs-page {
+    padding: 15px;
+  }
+
+  .jobs-page h1 {
+    font-size: 32px;
+  }
+
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Search Result */
+
+.search-result-box{
+    margin-bottom:20px;
+    padding:18px 22px;
+    background:#eff6ff;
+    border-left:5px solid #2563eb;
+    border-radius:10px;
+}
+
+.search-result-box h3{
+    margin:0;
+    color:#1e3a8a;
+    font-size:20px;
+}
+
+.search-result-box span{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.job-count{
+    margin-bottom:25px;
+    color:#555;
+    font-size:16px;
 }

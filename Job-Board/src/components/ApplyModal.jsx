@@ -1,24 +1,57 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import "./ApplyModal.css";
 
-function ApplyModal({ onClose }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+function ApplyModal({ isOpen, onClose, job }) {
+  const [application, setApplication] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    resume: "",
+    coverLetter: "",
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  if (!isOpen) return null;
 
-    if (!name || !email || !phone) {
-      alert("Please fill all the fields.");
+  const handleSubmit = () => {
+    if (
+      !application.name ||
+      !application.email ||
+      !application.phone ||
+      !application.resume
+    ) {
+      toast.error("Please fill all required fields!");
       return;
     }
 
-    alert("🎉 Application Submitted Successfully!");
+    const savedApplications =
+      JSON.parse(localStorage.getItem("applications")) || [];
 
-    setName("");
-    setEmail("");
-    setPhone("");
+    savedApplications.push({
+      ...application,
+
+      jobTitle: job.title,
+      company: job.company,
+      logo: job.logo,
+      location: job.location,
+
+      appliedDate: new Date().toLocaleDateString(),
+    });
+
+    localStorage.setItem(
+      "applications",
+      JSON.stringify(savedApplications)
+    );
+
+    toast.success("Application submitted successfully!");
+
+    setApplication({
+      name: "",
+      email: "",
+      phone: "",
+      resume: "",
+      coverLetter: "",
+    });
 
     onClose();
   };
@@ -26,49 +59,82 @@ function ApplyModal({ onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal">
+
+        <button
+          className="close-btn"
+          onClick={onClose}
+        >
+          ×
+        </button>
+
         <h2>Apply for this Job</h2>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter your full name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={application.name}
+          onChange={(e) =>
+            setApplication({
+              ...application,
+              name: e.target.value,
+            })
+          }
+        />
 
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <input
+          type="email"
+          placeholder="Email"
+          value={application.email}
+          onChange={(e) =>
+            setApplication({
+              ...application,
+              email: e.target.value,
+            })
+          }
+        />
 
-          <input
-            type="tel"
-            placeholder="Enter your phone number"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          value={application.phone}
+          onChange={(e) =>
+            setApplication({
+              ...application,
+              phone: e.target.value,
+            })
+          }
+        />
 
-          <input type="file" />
+        <input
+          type="file"
+          accept=".pdf"
+          onChange={(e) =>
+            setApplication({
+              ...application,
+              resume: e.target.files[0]?.name || "",
+            })
+          }
+        />
 
-          <div className="modal-buttons">
-            <button
-              type="submit"
-              className="submit-btn"
-            >
-              Submit Application
-            </button>
+        <textarea
+          placeholder="Cover Letter"
+          rows="5"
+          value={application.coverLetter}
+          onChange={(e) =>
+            setApplication({
+              ...application,
+              coverLetter: e.target.value,
+            })
+          }
+        />
 
-            <button
-              type="button"
-              className="cancel-btn"
-              onClick={onClose}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
+        <button
+          className="submit-btn"
+          onClick={handleSubmit}
+        >
+          Submit Application
+        </button>
+
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./JobDetails.css";
 import ApplyModal from "../components/ApplyModal";
 
+
 function JobDetails({ jobs }) {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -80,10 +81,11 @@ function JobDetails({ jobs }) {
         Apply Now
       </button>
 
-      {showModal && (
-        <ApplyModal onClose={() => setShowModal(false)} />
-      )}
-
+      <ApplyModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        job={job}
+      />
     </div>
   );
 }

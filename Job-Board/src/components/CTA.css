@@ -1,0 +1,31 @@
+.cta {
+  background: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.cta h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.cta p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.cta button {
+  background: white;
+  color: #2563eb;
+  border: none;
+  padding: 15px 35px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cta button:hover {
+  transform: scale(1.05);
+}

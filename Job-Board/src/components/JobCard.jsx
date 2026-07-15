@@ -1,92 +1,124 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import {
-    FaBuilding,
-    FaMapMarkerAlt,
-    FaMoneyBillWave,
-    FaBriefcase,
-    FaHeart,
-    FaRegHeart,
+  FaBuilding,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaBriefcase,
+  FaHeart,
+  FaRegHeart,
 } from "react-icons/fa";
 
 import "./JobCard.css";
 
 function JobCard({
-    id,
-    title,
-    company,
-    location,
-    salary,
-    type,
-    category,
-    logo,
+  id,
+  title,
+  company,
+  location,
+  salary,
+  type,
+  category,
+  logo,
 }) {
-    const [favorite, setFavorite] = useState(() => {
-        const favorites =
-            JSON.parse(localStorage.getItem("favorites")) || [];
-        return favorites.includes(id);
-    });
+  const [favorite, setFavorite] = useState(false);
 
-    useEffect(() => {
-        const favorites =
-            JSON.parse(localStorage.getItem("favorites")) || [];
+  useEffect(() => {
+    const savedJobs =
+      JSON.parse(localStorage.getItem("savedJobs")) || [];
 
-        if (favorite) {
-            if (!favorites.includes(id)) {
-                favorites.push(id);
-            }
-        } else {
-            const index = favorites.indexOf(id);
-            if (index > -1) {
-                favorites.splice(index, 1);
-            }
-        }
+    setFavorite(savedJobs.some((job) => job.id === id));
+  }, [id]);
 
-        localStorage.setItem(
-            "favorites",
-            JSON.stringify(favorites)
-        );
-    }, [favorite, id]);
+  const handleFavorite = () => {
+    const savedJobs =
+      JSON.parse(localStorage.getItem("savedJobs")) || [];
 
-    return (
-        <div className="job-card">
-            <div className="favorite-icon">
-                {favorite ? (
-                    <FaHeart onClick={() => setFavorite(false)} />
-                ) : (
-                    <FaRegHeart onClick={() => setFavorite(true)} />
-                )}
-            </div>
+    if (favorite) {
+      const updatedJobs = savedJobs.filter(
+        (job) => job.id !== id
+      );
 
-            <img
-                src={logo}
-                alt={company}
-                className="company-logo"
-            />
-            <h2>{title}</h2>
-            <span className="category-badge">{category}</span>
-            <p>
-                <FaBuilding /> <strong>Company:</strong> {company}
-            </p>
+      localStorage.setItem(
+        "savedJobs",
+        JSON.stringify(updatedJobs)
+      );
 
-            <p>
-                <FaMapMarkerAlt /> <strong>Location:</strong> {location}
-            </p>
+      setFavorite(false);
 
-            <p>
-                <FaMoneyBillWave /> <strong>Salary:</strong> {salary}
-            </p>
+      toast.info("Removed from Saved Jobs");
+    } else {
+      const newJob = {
+        id,
+        title,
+        company,
+        location,
+        salary,
+        type,
+        category,
+        logo,
+      };
 
-            <p>
-                <FaBriefcase /> <strong>Type:</strong> {type}
-            </p>
+      savedJobs.push(newJob);
 
-            <Link to={`/jobs/${id}`}>
-                <button>Apply Now</button>
-            </Link>
-        </div>
-    );
+      localStorage.setItem(
+        "savedJobs",
+        JSON.stringify(savedJobs)
+      );
+
+      setFavorite(true);
+
+      toast.success("Job saved successfully!");
+    }
+  };
+
+  return (
+    <div className="job-card">
+      <div className="favorite-icon">
+        {favorite ? (
+          <FaHeart onClick={handleFavorite} />
+        ) : (
+          <FaRegHeart onClick={handleFavorite} />
+        )}
+      </div>
+
+      <img
+        src={logo}
+        alt={company}
+        className="company-logo"
+      />
+
+      <h2>{title}</h2>
+
+      <span className="category-badge">
+        {category}
+      </span>
+
+      <p>
+        <FaBuilding /> <strong>Company:</strong> {company}
+      </p>
+
+      <p>
+        <FaMapMarkerAlt /> <strong>Location:</strong> {location}
+      </p>
+
+      <p>
+        <FaMoneyBillWave /> <strong>Salary:</strong> {salary}
+      </p>
+
+      <p>
+        <FaBriefcase /> <strong>Type:</strong> {type}
+      </p>
+
+      <Link to={`/jobs/${id}`}>
+        <button className="apply-btn-card">
+          Apply Now
+        </button>
+      </Link>
+    </div>
+  );
 }
 
 export default JobCard;
