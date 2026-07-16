@@ -1,16 +1,68 @@
-# React + Vite
+# JobBoard – React Job Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+JobBoard is a modern and responsive job portal developed using React. It allows candidates to search, filter, save, and apply for jobs, while recruiters can manage job listings through an interactive admin dashboard.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Candidate Features
 
-## React Compiler
+- Browse available jobs
+- Search by title, company, or location
+- Filter by job type and category
+- View detailed job information
+- Save favourite jobs
+- Apply for jobs using a modal form
+- View submitted applications
+- Browse hiring companies
+- Responsive user interface
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Admin Features
 
-## Expanding the Oxlint configuration
+- Add new jobs
+- Edit existing jobs
+- Delete jobs
+- Upload company logos
+- Search jobs in the dashboard
+- View dashboard statistics
+- Job-type pie chart
+- Category-wise bar chart
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Additional Features
+
+- LocalStorage data persistence
+- Toast notifications
+- Animated statistics
+- Scroll-to-top button
+- Custom 404 page
+- Login and registration UI
+- Professional footer
+- Responsive design
+
+## Technologies Used
+
+- React
+- Vite
+- JavaScript
+- CSS
+- React Router
+- React Icons
+- React Toastify
+- Recharts
+- LocalStorage
+
+## Project Structure
+
+```text
+Job-Board/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── data/
+│   ├── pages/
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── package.json
+├── vite.config.js
+└── README.md
